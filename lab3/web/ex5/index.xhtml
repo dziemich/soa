@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<h:outputScript library="javax.faces" name="jsf.js" target="head" />
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="1">
+            Gender:
+            <h:selectOneRadio id="genderSelect" value="#{survey.gender}" required="true">
+                <f:selectItem itemValue="m" itemLabel="male"/>
+                <f:selectItem itemValue="f" itemLabel="female"/>
+                <f:ajax event="change" execute="genderSelect" render="@form" />
+            </h:selectOneRadio>
+            Name:
+            <h:inputText id="nameInput" value="#{survey.name}" required="true" immediate="true"/>
+            e-mail:
+            <h:inputText id="emailInput" value="#{survey.email}" required="true" immediate="true">
+                <f:validator validatorId="mailValidator"/>
+            </h:inputText>
+            Age:
+            <h:inputText id="ageInput" value="#{survey.age}" validatorMessage="invalid age">
+                <f:validateLongRange maximum="105" minimum="5"/>
+            </h:inputText>
+            Education:
+            <h:selectOneRadio id="educationSelect" value="#{survey.education}">
+                <f:selectItem itemValue="primary" itemLabel="primary"/>
+                <f:selectItem itemValue="higher" itemLabel="higher"/>
+                <f:selectItem itemValue="student" itemLabel="student"/>
+            </h:selectOneRadio>
+            Height:
+            <h:inputText id="heightInput" value="#{survey.height}" immediate="true" validatorMessage="invalid height">
+                <f:validateLongRange minimum="150" maximum="185" disabled="#{survey.getGender().equals('m')}"/>
+                <f:validateLongRange minimum="165" maximum="200" disabled="#{survey.getGender().equals('f')}"/>
+            </h:inputText>
+            <h:messages style="color: red"/>
+            <h:outputText value="Breast:" rendered="#{survey.gender.equals('f')}" />
+            <h:inputText id="breastInput" value="#{survey.breast}" rendered="#{survey.gender.equals('f')}"/>
+            <h:outputText value="Bra:" rendered="#{survey.gender.equals('f')}" />
+            <h:inputText id="braInput" value="#{survey.bra}" rendered="#{survey.gender.equals('f')}"/>
+            <h:outputText value="waistline:" rendered="#{survey.gender.equals('f')}" />
+            <h:inputText id="waistlineInput" value="#{survey.waistline}" rendered="#{survey.gender.equals('f')}"/>
+            <h:outputText value="hips:" rendered="#{survey.gender.equals('f')}" />
+            <h:inputText id="hipsInput" value="#{survey.hips}" rendered="#{survey.gender.equals('f')}"/>
+            <h:outputText value="chest:" rendered="#{survey.gender.equals('m')}" />
+            <h:inputText id="chestInput" value="#{survey.chest}" rendered="#{survey.gender.equals('m')}"/>
+            <h:outputText value="midsection:" rendered="#{survey.gender.equals('m')}" />
+            <h:inputText id="midsectionInput" value="#{survey.midsection}" rendered="#{survey.gender.equals('m')}"/>
+        </h:panelGrid>
+        <h:commandButton id="submitBlank" value="Send" type="submit" action="extraQuestions"/>
+
+    </h:form>
+
+</h:body>
+
+</html>

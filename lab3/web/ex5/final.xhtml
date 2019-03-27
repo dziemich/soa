@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head><title>Zadanie 4</title></h:head>
+
+<h:body>
+    <div style="display: flex; flex-direction: row">
+        <h:form>
+            <h:panelGrid columns="2">
+                Imie:
+                <h:outputText value="#{survey.name}"/>
+                Mail:
+                <h:outputText value="#{survey.email}"/>
+                Wiek:
+                <h:outputText value="#{survey.age}"/>
+                Plec:
+                <h:outputText value="male" rendered="#{survey.gender.equals('m')}"/>
+                <h:outputText value="female" rendered="#{survey.gender.equals('f')}"/>
+                Wyksztalcenie:
+                <h:outputText value="#{survey.education}"/>
+                Wzrost:
+                <h:outputText value="#{survey.height}"/>
+                <h:outputText value="breat" rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="#{survey.breast}" rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="bra" rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="#{survey.bra}" rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="waistline" rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="#{survey.waistline}" rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="hips" rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="#{survey.hips}" rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="cheast" rendered="#{survey.gender.equals('m')}"/>
+                <h:outputText value="#{survey.chest}" rendered="#{survey.gender.equals('m')}"/>
+                <h:outputText value="middleline" rendered="#{survey.gender.equals('m')}"/>
+                <h:outputText value="#{survey.midsection}" rendered="#{survey.gender.equals('m')}"/>
+                How much u can spend on clothes?
+                <h:outputText value="#{survey.monthlyMoney}"/>
+                How often do u buy things?
+                <h:outputText value="#{survey.howOften}"/>
+                Prefered color?:
+                <h:outputText value="#{survey.preferedColor}"/>
+                What is ypur favourite type of clothes?:
+                <h:outputText value="#{survey.typeClothes}"
+                              rendered="#{survey.gender.equals('f')}"/>
+                <h:outputText value="#{survey.typeClothes}"
+                              rendered="#{survey.gender.equals('m')}"/>
+            </h:panelGrid>
+        </h:form>
+        <h:form>
+            <div style="display: flex; flex-direction: column">
+            <!--<h:graphicImage value="https://picsum.photos/#{survey.imageId}" cacheable="false"/>-->
+            <h:commandButton id="clickPhoto" value="I am an ad. Please Click Me"
+                             action="#{survey.incrementClick}" update="outputClick"/>
+            Clicks:<h:outputText id="outputClick" value="#{survey.numberOfClicks}"/>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

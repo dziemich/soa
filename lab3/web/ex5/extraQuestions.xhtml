@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<body>
+    <h:form>
+<h:panelGrid columns="2">
+    How much u can spend on clothes?
+    <h:selectOneMenu id="selectQ1" value="#{survey.monthlyMoney}">
+        <f:selectItem itemValue="less-100" itemLabel="less than 100 zl"/>
+        <f:selectItem itemValue="100-500" itemLabel="100-500 zl"/>
+        <f:selectItem itemValue="500-1000" itemLabel="500-1000 zl"/>
+        <f:selectItem itemValue="more-1000" itemLabel="more than 1000 zl"/>
+    </h:selectOneMenu>
+    How often do u buy things?
+    <h:selectOneMenu id="selectQ2" value="#{survey.howOften}">
+        <f:selectItem itemValue="day" itemLabel="every day"/>
+        <f:selectItem itemValue="week" itemLabel="once a week"/>
+        <f:selectItem itemValue="month" itemLabel="once per month"/>
+        <f:selectItem itemValue="year" itemLabel="few times in a year"/>
+    </h:selectOneMenu>
+    Prefered color?
+    <h:selectOneMenu id="selectQ3" value="#{survey.preferedColor}">
+        <f:selectItem itemValue="dark" itemLabel="dark"/>
+        <f:selectItem itemValue="white" itemLabel="white"/>
+        <f:selectItem itemValue="colorful" itemLabel="colorful"/>
+    </h:selectOneMenu>
+    What is ypur favourite type of clothes?
+    <h:selectManyCheckbox id="selectQ4Male" value="#{survey.typeClothes}" rendered="#{survey.gender.equals('m')}">
+        <f:selectItem itemValue="tie" itemLabel="tie"/>
+        <f:selectItem itemValue="trousers" itemLabel="trousers"/>
+        <f:selectItem itemValue="suit" itemLabel="suit"/>
+    </h:selectManyCheckbox>
+    <h:selectManyCheckbox id="selectQ4Famale" value="#{survey.typeClothes}" rendered="#{survey.gender.equals('f')}">
+        <f:selectItem itemValue="dress" itemLabel="dress"/>
+        <f:selectItem itemValue="skirt" itemLabel="skirt"/>
+    </h:selectManyCheckbox>
+
+</h:panelGrid>
+        <h:commandButton id="submitButton" value="send" type="submit" action="final"/>
+    </h:form>
+</body>
+</html>

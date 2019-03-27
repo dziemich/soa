@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputScript library="javax.faces" name="jsf.js" target="head"/>
+</h:head>
+<body>
+<h:form>
+    Filters:
+    <br/>
+    Currency:
+
+    <h:selectOneRadio id="currency" value="#{book.currency}">
+        <f:selectItem itemValue="PLN" itemLabel="PLN"/>
+
+        <f:ajax
+                event="change"
+                execute="currency"
+                render="search"/>
+    </h:selectOneRadio>
+    <br/>
+    <strong>Author: </strong>
+    <h:selectManyCheckbox id="author" value="#{book.author}">
+        <f:selectItem itemValue="Astrid Lindgren" itemLabel="Astrid Lindgren"/>
+        <f:selectItem itemValue="Stieg Larsson" itemLabel="Stieg Larsson"/>
+        <f:selectItem itemValue="Jo Nesbo" itemLabel="Jo Nesbo"/>
+        <f:selectItem itemValue="Stefan Żeromski" itemLabel="Stefan Żeromski"/>
+        <f:selectItem itemValue="J.R.R Tolkien" itemLabel="J.R.R Tolkien"/>
+        <f:ajax
+                event="change"
+                execute="author"
+                render="search"/>
+    </h:selectManyCheckbox>
+    <strong>Genre: </strong>
+    <h:selectManyCheckbox id="genres" value="#{book.genres}">
+        <f:selectItem itemValue="criminal" itemLabel="criminal"/>
+        <f:selectItem itemValue="kids" itemLabel="kids"/>
+        <f:selectItem itemValue="novel" itemLabel="novel"/>
+        <f:selectItem itemValue="fantasy" itemLabel="fantasy"/>
+        <f:ajax
+                event="change"
+                execute="genres"
+                render="search"/>
+    </h:selectManyCheckbox>
+    <br/>
+    <strong>Price: </strong>
+    From
+    <h:inputText id="fromPrice" value="#{book.priceFrom}">
+        <f:ajax
+                event="change"
+                execute="fromPrice"
+                render="search"/>
+    </h:inputText>
+
+    To
+    <h:inputText id="toPrice" value="#{book.priceTo}">
+        <f:ajax
+                event="change"
+                execute="toPrice"
+                render="search"/>
+    </h:inputText>
+
+
+    <br/>
+    <h:commandButton id="search" value="Filter">
+        <f:ajax event="click" render="results"/>
+    </h:commandButton>
+
+</h:form>
+<h:form id="results">
+    <h:dataTable id="resultsTable" value="#{book.result}" var="singleBook">
+
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{singleBook.title}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Author</f:facet>
+            #{singleBook.author}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Type</f:facet>
+            #{singleBook.type}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Pages</f:facet>
+            #{singleBook.pages}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Currency</f:facet>
+            #{singleBook.currency}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Price</f:facet>
+            #{singleBook.price}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Buy?</f:facet>
+            <h:selectBooleanCheckbox value="#{singleBook.select}"/>
+
+        </h:column>
+
+    </h:dataTable>
+
+    <h:commandButton id="submitButton" value="Buy!" type="submit" action="final"/>
+</h:form>
+</body>
+</html>
