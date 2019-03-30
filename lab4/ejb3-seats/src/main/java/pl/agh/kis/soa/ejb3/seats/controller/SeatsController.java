@@ -17,7 +17,7 @@ public class SeatsController {
     }
 
     @Lock(LockType.WRITE)
-    public void buyTicket(Seat seat){
+    private void buyTicket(Seat seat){
         seat.setTaken(true);
     }
 
@@ -30,4 +30,18 @@ public class SeatsController {
         return seat.getPrice();
     }
 
+    public Double buyTickets(){
+        return marksSeatsAsTakenAndCollectMoney();
+    }
+
+
+    private Double marksSeatsAsTakenAndCollectMoney(){
+        return seats
+            .stream()
+            .filter(Seat::getSelected)
+            .peek(this::buyTicket)
+            .map(Seat::getPrice)
+            .mapToDouble(Double::doubleValue)
+            .sum();
+    }
 }

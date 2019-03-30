@@ -1,6 +1,6 @@
 package pl.agh.kis.soa;
 
-import pl.agh.kis.soa.ejb3.payment.TestAddBean;
+import pl.agh.kis.soa.ejb3.seats.controller.PaymentController;
 import pl.agh.kis.soa.ejb3.seats.controller.SeatsController;
 
 import javax.ejb.EJB;
@@ -15,47 +15,24 @@ import pl.agh.kis.soa.ejb3.seats.model.Seat;
 public class IndexView implements Serializable {
 
     @EJB
-    TestAddBean testAddBean;
+    PaymentController paymentController;
 
     @EJB
     SeatsController seatsController;
 
-    private int a = 0, b = 0;
-
-    private List<String> test = List.of("_1_lalala", "_2_nanana", "_3_tatata");
-
     public IndexView() {
-    }
-
-    public int getA() {
-        return a;
-    }
-
-    public void setA(int a) {
-        this.a = a;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public void setB(int b) {
-        this.b = b;
-    }
-
-    public List<String> getTest() {
-        return test;
-    }
-
-    public void setTest(List<String> test) {
-        this.test = test;
-    }
-
-    public int calculateSum() {
-        return testAddBean.add(a, b);
     }
 
     public List<Seat> displaySeats(){
         return seatsController.getSeatList();
+    }
+
+    public Double getClientsBalance(){
+        return paymentController.getClientsBalance();
+    }
+
+    public void buyTickets(){
+        Double money = seatsController.buyTickets();
+        paymentController.getClient().setBalance(paymentController.getClientsBalance() - money);
     }
 }

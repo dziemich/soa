@@ -9,17 +9,6 @@
 
 <h:head></h:head>
 <h:body>
-    <h:form>
-        <p:outputLabel for="a_input">a&#58;</p:outputLabel>
-        <p:inputNumber id="a_input" value="#{indexView.a}" required="true"/><br/>
-        <p:message for="a_input"/>
-        <p:outputLabel for="b_input">b&#58;</p:outputLabel>
-        <p:inputNumber id="b_input" value="#{indexView.b}" required="true"/><br/>
-        <p:message for="b_input"/>
-        <p:outputLabel for="sum">sum&#58;</p:outputLabel>
-        <p:outputLabel id="sum" value="#{indexView.calculateSum()}"/><br/>
-        <p:commandButton value="Calculate" update="@form" />
-    </h:form>
     <h:form id="results">
         <h:dataTable id="resultsTable" value="#{indexView.displaySeats()}" var="seat">
             <h:column>
@@ -40,10 +29,14 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Buy?</f:facet>
-                <h:selectBooleanCheckbox value="#{seat.selected}"/>
+                <h:selectBooleanCheckbox value="#{seat.selected}" disabled="#{seat.taken}"/>
             </h:column>
         </h:dataTable>
-        <h:commandButton id="submitButton" value="Buy!" type="submit" action="final"/>
+        <h:commandButton action="#{indexView.buyTickets()}" value="BUY" />
+    </h:form>
+    <h:form id="client">
+        <h:outputText value="bank balance"/>
+        <h:outputText value="#{indexView.getClientsBalance()}"/>
     </h:form>
 
 </h:body>

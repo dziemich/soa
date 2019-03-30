@@ -35,13 +35,6 @@
             <type>ejb-client</type>
         </dependency>
         <dependency>
-            <groupId>pl.agh.kis.soa</groupId>
-            <artifactId>ejb3-payment</artifactId>
-            <scope>compile</scope>
-            <version>1.0-SNAPSHOT</version>
-            <type>ejb-client</type>
-        </dependency>
-        <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <scope>compile</scope>
