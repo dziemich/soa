@@ -5,8 +5,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
-import pl.agh.kis.soa.ejb3.seats.model.Seat;
-import pl.agh.kis.soa.ejb3.seats.repository.SeatsRepository;
+import pl.agh.kis.soa.ejb3.commons.model.Seat;
+import pl.agh.kis.soa.ejb3.commons.repository.SeatsRepository;
 
 @Singleton
 public class SeatsController {

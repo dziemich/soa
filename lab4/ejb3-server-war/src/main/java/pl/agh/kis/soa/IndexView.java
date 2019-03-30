@@ -8,7 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import pl.agh.kis.soa.ejb3.seats.model.Seat;
+import pl.agh.kis.soa.ejb3.commons.model.Seat;
 
 @Named
 @ViewScoped

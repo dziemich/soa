@@ -1,4 +1,4 @@
-package pl.agh.kis.soa.ejb3.seats.model;
+package pl.agh.kis.soa.ejb3.commons.model;
 
 import java.util.Objects;
 

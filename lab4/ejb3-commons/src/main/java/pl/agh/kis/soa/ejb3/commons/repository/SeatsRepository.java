@@ -1,6 +1,6 @@
-package pl.agh.kis.soa.ejb3.seats.repository;
+package pl.agh.kis.soa.ejb3.commons.repository;
 
-import pl.agh.kis.soa.ejb3.seats.model.Seat;
+import pl.agh.kis.soa.ejb3.commons.model.Seat;
 import java.util.List;
 
 public class SeatsRepository {

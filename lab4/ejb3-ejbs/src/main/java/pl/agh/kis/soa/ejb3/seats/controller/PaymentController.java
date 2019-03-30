@@ -2,8 +2,8 @@ package pl.agh.kis.soa.ejb3.seats.controller;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import pl.agh.kis.soa.ejb3.seats.model.Client;
-import pl.agh.kis.soa.ejb3.seats.model.Seat;
+import pl.agh.kis.soa.ejb3.commons.model.Client;
+import pl.agh.kis.soa.ejb3.commons.model.Seat;
 
 @Stateful
 public class PaymentController {
