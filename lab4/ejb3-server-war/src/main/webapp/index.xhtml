@@ -9,35 +9,37 @@
 
 <h:head></h:head>
 <h:body>
-    <h:form id="results">
-        <h:dataTable id="resultsTable" value="#{indexView.displaySeats()}" var="seat">
-            <h:column>
-                <f:facet name="header">Row</f:facet>
-                #{seat.row}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Place</f:facet>
-                #{seat.place}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Price</f:facet>
-                #{seat.price}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Taken</f:facet>
-                #{seat.taken}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Buy?</f:facet>
-                <h:selectBooleanCheckbox value="#{seat.selected}" disabled="#{seat.taken}"/>
-            </h:column>
-        </h:dataTable>
-        <h:commandButton action="#{indexView.buyTickets()}" value="BUY" />
-    </h:form>
-    <h:form id="client">
-        <h:outputText value="bank balance"/>
-        <h:outputText value="#{indexView.getClientsBalance()}"/>
-    </h:form>
-
+    <div style="display: flex; flex-direction: row">
+        <h:form id="results">
+            <h:dataTable id="resultsTable" value="#{indexView.displaySeats()}" var="seat">
+                <h:column>
+                    <f:facet name="header">Row</f:facet>
+                    #{seat.row}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Place</f:facet>
+                    #{seat.place}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    #{seat.price}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Taken</f:facet>
+                    #{seat.taken}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Buy?</f:facet>
+                    <h:selectBooleanCheckbox value="#{seat.selected}" disabled="#{seat.taken}"/>
+                </h:column>
+            </h:dataTable>
+            <h:commandButton action="#{indexView.buyTickets()}" value="BUY"/>
+            <h:messages/>
+        </h:form>
+            <h:form id="client">
+                <h:outputText value="bank balance"/>
+                <h:outputText value="#{indexView.getClientsBalance()}"/>
+            </h:form>
+    </div>
 </h:body>
 </html>

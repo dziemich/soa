@@ -1,9 +1,10 @@
-package pl.agh.kis.soa.ejb3.seats.controller;
+package pl.agh.kis.soa.ejb3.payment;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import pl.agh.kis.soa.ejb3.commons.model.Client;
-import pl.agh.kis.soa.ejb3.commons.model.Seat;
 
 @Stateful
 public class PaymentController {
@@ -12,7 +13,7 @@ public class PaymentController {
 
     @PostConstruct
     void init(){
-        client = new Client(500.0);
+        client = new Client(150.0);
     }
 
     public Client getClient() {
@@ -27,7 +28,10 @@ public class PaymentController {
         return client.getBalance();
     }
 
-    public boolean verify(Seat seat){
-        return seat.getTaken() && seat.getPrice() < client.getBalance();
+    public boolean verify(Double sum) throws IllegalStateException{
+        if (sum > client.getBalance()){
+          return false;
+        }
+        return true;
     }
 }

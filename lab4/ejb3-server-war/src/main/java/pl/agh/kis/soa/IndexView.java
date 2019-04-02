@@ -1,6 +1,9 @@
 package pl.agh.kis.soa;
 
-import pl.agh.kis.soa.ejb3.seats.controller.PaymentController;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import pl.agh.kis.soa.ejb3.commons.model.Seat;
+import pl.agh.kis.soa.ejb3.seats.PaymentController;
 import pl.agh.kis.soa.ejb3.seats.controller.SeatsController;
 
 import javax.ejb.EJB;
@@ -8,31 +11,42 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import pl.agh.kis.soa.ejb3.commons.model.Seat;
 
 @Named
 @ViewScoped
 public class IndexView implements Serializable {
 
-    @EJB
-    PaymentController paymentController;
+  @EJB
+  PaymentController paymentController;
 
-    @EJB
-    SeatsController seatsController;
+  @EJB
+  SeatsController seatsController;
 
-    public IndexView() {
+  public IndexView() {
+  }
+
+  public List<Seat> displaySeats() {
+    return seatsController.getSeatList();
+  }
+
+  public Double getClientsBalance() {
+    return paymentController.getClientsBalance();
+  }
+
+  public void buyTickets() {
+    Double money = seatsController.calculateTicketPrice();
+    try {
+      if (paymentController.verify(money)){
+      paymentController.getClient().setBalance(paymentController.getClientsBalance() - money);
+      seatsController.markSeatsAsTaken();
+    } else {
+        throw new IllegalStateException();
+      }
     }
-
-    public List<Seat> displaySeats(){
-        return seatsController.getSeatList();
+      catch (Exception ise){
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+          FacesMessage.SEVERITY_ERROR,
+          "Not enough money to perform the operation", null));
     }
-
-    public Double getClientsBalance(){
-        return paymentController.getClientsBalance();
-    }
-
-    public void buyTickets(){
-        Double money = seatsController.buyTickets();
-        paymentController.getClient().setBalance(paymentController.getClientsBalance() - money);
-    }
+  }
 }
