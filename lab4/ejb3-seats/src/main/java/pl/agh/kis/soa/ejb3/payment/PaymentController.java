@@ -1,4 +1,4 @@
-package pl.agh.kis.soa.ejb3.seats;
+package pl.agh.kis.soa.ejb3.payment;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;

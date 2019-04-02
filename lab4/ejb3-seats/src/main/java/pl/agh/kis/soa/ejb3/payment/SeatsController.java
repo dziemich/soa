@@ -1,6 +1,5 @@
-package pl.agh.kis.soa.ejb3.seats;
+package pl.agh.kis.soa.ejb3.payment;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;

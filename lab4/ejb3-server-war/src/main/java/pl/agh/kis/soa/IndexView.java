@@ -4,14 +4,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import pl.agh.kis.soa.ejb3.commons.exception.CustomISException;
 import pl.agh.kis.soa.ejb3.commons.model.Seat;
-import pl.agh.kis.soa.ejb3.seats.PaymentController;
+import pl.agh.kis.soa.ejb3.payment.PaymentController;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import pl.agh.kis.soa.ejb3.seats.SeatsController;
+import pl.agh.kis.soa.ejb3.payment.SeatsController;
 
 @Named
 @ViewScoped
