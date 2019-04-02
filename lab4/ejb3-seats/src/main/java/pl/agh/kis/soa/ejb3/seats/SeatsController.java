@@ -1,4 +1,4 @@
-package pl.agh.kis.soa.ejb3.seats.controller;
+package pl.agh.kis.soa.ejb3.seats;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
+import pl.agh.kis.soa.ejb3.commons.exception.CustomISException;
 import pl.agh.kis.soa.ejb3.commons.model.Seat;
 import pl.agh.kis.soa.ejb3.commons.repository.SeatsRepository;
 
@@ -20,7 +21,7 @@ public class SeatsController {
 
     @Lock(LockType.WRITE)
     private boolean buyTicket(Seat seat){
-        if(seat.getTaken()) return false;
+        if(seat.getTaken()) throw new CustomISException("seat taken");
         seat.setTaken(true);
         return true;
     }

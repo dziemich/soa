@@ -2,8 +2,7 @@ package pl.agh.kis.soa.ejb3.seats;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import pl.agh.kis.soa.ejb3.commons.exception.CustomISException;
 import pl.agh.kis.soa.ejb3.commons.model.Client;
 
 @Stateful
@@ -28,9 +27,10 @@ public class PaymentController {
         return client.getBalance();
     }
 
-    public boolean verify(Double sum) throws IllegalStateException{
+    public boolean verify(Double sum) throws CustomISException {
         if (sum > client.getBalance()){
-          return false;
+            throw new CustomISException("not enough money");
+//          return false;
         }
         return true;
     }
