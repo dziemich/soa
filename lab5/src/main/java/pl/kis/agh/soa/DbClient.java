@@ -35,16 +35,16 @@ public class DbClient {
     entityManager.getTransaction().commit();
   }
 
-  public void updateOne(String first_name2, String last_name2, String title2, String isbn2, Integer year2, String price2, Integer updatedId) {
+  public void updateOne(Book updated, Integer updatedId) {
     entityManager.getTransaction().begin();
     Query queryObj = entityManager.createQuery("UPDATE Book s SET s.first_name=:name, s.last_name=:surname, s.title=:title,s.isbn=:isbn,s.price=:price,s.year=:year WHERE s.id= :id");
     queryObj.setParameter("id", updatedId);
-    queryObj.setParameter("name", first_name2);
-    queryObj.setParameter("surname", last_name2);
-    queryObj.setParameter("year", year2);
-    queryObj.setParameter("isbn", isbn2);
-    queryObj.setParameter("price", price2);
-    queryObj.setParameter("title", title2);
+    queryObj.setParameter("name", updated.getFirst_name());
+    queryObj.setParameter("surname", updated.getLast_name());
+    queryObj.setParameter("year", updated.getYear());
+    queryObj.setParameter("isbn", updated.getIsbn());
+    queryObj.setParameter("price", updated.getPrice());
+    queryObj.setParameter("title", updated.getTitle());
     queryObj.executeUpdate();
     entityManager.getTransaction().commit();
   }

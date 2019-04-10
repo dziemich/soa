@@ -43,27 +43,27 @@
 
     <h:outputLabel>
         Title
-        <h:inputText value="#{bookview.title}" />
+        <h:inputText value="#{bookview.added.title}" />
     </h:outputLabel>
     <h:outputLabel>
         Author's First Name
-        <h:inputText value="#{bookview.first_name}" />
+        <h:inputText value="#{bookview.added.first_name}" />
     </h:outputLabel>
     <h:outputLabel>
         Author's Last Name
-        <h:inputText value="#{bookview.last_name}" />
+        <h:inputText value="#{bookview.added.last_name}" />
     </h:outputLabel>
     <h:outputLabel>
         ISBN
-        <h:inputText value="#{bookview.isbn}" />
+        <h:inputText value="#{bookview.added.isbn}" />
     </h:outputLabel>
     <h:outputLabel>
         Year of Publishing
-        <h:inputText value="#{bookview.year}" />
+        <h:inputText value="#{bookview.added.year}" />
     </h:outputLabel>
     <h:outputLabel>
         Price
-        <h:inputText value="#{bookview.price}" />
+        <h:inputText value="#{bookview.added.price}" />
     </h:outputLabel>
     <h:commandButton value="Add" action="#{bookview.addBook}" />
 </h:form>
@@ -71,6 +71,7 @@
 <h:form>
     <h1>Remove a Book</h1>
     <h:outputLabel>
+        Book Id:
         <h:inputText value="#{bookview.deletedId}" />
     </h:outputLabel>
     <h:commandButton value="Remove" action="#{bookview.deleteBook}" />
@@ -81,34 +82,33 @@
 
     <h:outputLabel>
         Title
-        <h:inputText value="#{bookview.title2}" />
+        <h:inputText value="#{bookview.updated.title}" />
     </h:outputLabel>
     <h:outputLabel>
         Author's First Name
-        <h:inputText value="#{bookview.first_name2}" />
+        <h:inputText value="#{bookview.updated.first_name}" />
     </h:outputLabel>
     <h:outputLabel>
         Author's Last Name
-        <h:inputText value="#{bookview.last_name2}" />
+        <h:inputText value="#{bookview.updated.last_name}" />
     </h:outputLabel>
     <h:outputLabel>
         ISBN
-        <h:inputText value="#{bookview.isbn2}" />
+        <h:inputText value="#{bookview.updated.isbn}" />
     </h:outputLabel>
     <h:outputLabel>
         Year of Publishing
-        <h:inputText value="#{bookview.year2}" />
+        <h:inputText value="#{bookview.updated.year}" />
     </h:outputLabel>
     <h:outputLabel>
         Price
-        <h:inputText value="#{bookview.price2}" />
+        <h:inputText value="#{bookview.updated.price}" />
     </h:outputLabel>
-
-    <h1>Id</h1>
     <h:outputLabel>
+        Id
         <h:inputText value="#{bookview.updatedId}" />
     </h:outputLabel>
-    <h:commandButton value="Remove" action="#{bookview.updateBook}" />
+    <h:commandButton value="Update" action="#{bookview.updateBook}" />
 
 </h:form>
 
