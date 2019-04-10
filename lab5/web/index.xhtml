@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:H="http://java.sun.com/jsf/html">
+<h:form>
+    <h:dataTable id="bookBeanTable" value="#{bookview.findBooks()}" var="bookBean"
+                 styleClass="table table-striped table-bordered tableUpdated">
+
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            <h:outputText value="#{bookBean.id }"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Author</f:facet>
+            <h:outputText value="#{bookBean.first_name } "/>
+
+            <h:outputText value="#{bookBean.last_name }"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            <h:outputText value="#{bookBean.title }"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">ISBN</f:facet>
+            <h:outputText value="#{bookBean.isbn }"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Year</f:facet>
+            <h:outputText value="#{bookBean.year }"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Price</f:facet>
+            <h:outputText value="#{bookBean.price }"/>
+        </h:column>
+    </h:dataTable>
+</h:form>
+<h:form id="addBook">
+    <h1>Add a New Book</h1>
+
+    <h:outputLabel>
+        Title
+        <h:inputText value="#{bookview.title}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        Author's First Name
+        <h:inputText value="#{bookview.first_name}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        Author's Last Name
+        <h:inputText value="#{bookview.last_name}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        ISBN
+        <h:inputText value="#{bookview.isbn}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        Year of Publishing
+        <h:inputText value="#{bookview.year}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        Price
+        <h:inputText value="#{bookview.price}" />
+    </h:outputLabel>
+    <h:commandButton value="Add" action="#{bookview.addBook}" />
+</h:form>
+
+<h:form>
+    <h1>Remove a Book</h1>
+    <h:outputLabel>
+        <h:inputText value="#{bookview.deletedId}" />
+    </h:outputLabel>
+    <h:commandButton value="Remove" action="#{bookview.deleteBook}" />
+
+</h:form>
+<h:form id="updateBook">
+    <h1>Update Book</h1>
+
+    <h:outputLabel>
+        Title
+        <h:inputText value="#{bookview.title2}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        Author's First Name
+        <h:inputText value="#{bookview.first_name2}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        Author's Last Name
+        <h:inputText value="#{bookview.last_name2}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        ISBN
+        <h:inputText value="#{bookview.isbn2}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        Year of Publishing
+        <h:inputText value="#{bookview.year2}" />
+    </h:outputLabel>
+    <h:outputLabel>
+        Price
+        <h:inputText value="#{bookview.price2}" />
+    </h:outputLabel>
+
+    <h1>Id</h1>
+    <h:outputLabel>
+        <h:inputText value="#{bookview.updatedId}" />
+    </h:outputLabel>
+    <h:commandButton value="Remove" action="#{bookview.updateBook}" />
+
+</h:form>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+  <persistence-unit name="BooksPersistence">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <jta-data-source>java:/PostgresDS</jta-data-source>
+    <class>pl.kis.agh.soa.Book</class>
+    <properties>
+      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/soa" />
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+      <property name="hibernate.connection.username" value="soa" />
+      <property name="hibernate.connection.password" value="soa" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+      <property name="hibernate.archive.autodetection" value="class" />
+      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.format_sql" value="true" />
+      <property name="hibernate.hbm2ddl.auto" value="update" />
+      <property name="hbm2ddl.auto" value="update" />
+    </properties>
+  </persistence-unit>
+</persistence>
