@@ -44,8 +44,4 @@ public class User extends PersonModel {
   public void setLoans(List<Loan> loans) {
     this.loans = loans;
   }
-
-  public String getFullName(){
-    return String.format("%s %s", this.getFirstName(), this.getLastName());
-  }
 }

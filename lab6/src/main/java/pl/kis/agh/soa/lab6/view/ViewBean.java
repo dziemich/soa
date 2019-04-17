@@ -7,6 +7,7 @@ import javax.faces.bean.SessionScoped;
 import pl.kis.agh.soa.lab6.controller.LibraryController;
 import pl.kis.agh.soa.lab6.entities.Author;
 import pl.kis.agh.soa.lab6.entities.Book;
+import pl.kis.agh.soa.lab6.entities.Loan;
 import pl.kis.agh.soa.lab6.entities.User;
 
 @ManagedBean(name = "viewManager")
@@ -60,5 +61,9 @@ public class ViewBean {
     libraryController.borrowBook(pickedUserId, chosenBookId);
   }
 
+
+  public List<Loan> findAllLoans() {
+    return libraryController.fetchAllLoansOfAUser(pickedUserId);
+  }
 }
 

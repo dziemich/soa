@@ -2,6 +2,7 @@ package pl.kis.agh.soa.lab6.entities;
 
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -29,11 +30,19 @@ import pl.kis.agh.soa.lab6.entities.models.Model;
     @NamedQuery(
         name = "Book.setTaken",
         query = "UPDATE Book book SET book.taken = true WHERE id = :id"
+    ),
+    @NamedQuery(
+        name = "Book.update",
+        query = "UPDATE Book book SET book.author.id = :authorId, book.title = :title, book.isbn = :isbn, book.year = :year WHERE id = :id"
+    ),
+    @NamedQuery(
+        name = "Book.deleteOne",
+        query = "DELETE Book book WHERE id = :id"
     )
 })
 @Table(name = "books")
 public class Book extends Model {
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   Author author;
   @Column(nullable = false)
   String title;
@@ -46,6 +55,18 @@ public class Book extends Model {
   @OneToMany
   List<User> renters;
 
+  public Book() {
+    this.taken = false;
+    this.author = new Author();
+  }
+
+  public Book(Book b){
+    this();
+    this.author = b.getAuthor();
+    this.title = b.getTitle();
+    this.isbn = b.getIsbn();
+    this.year = b.getYear();
+  }
 
   public Author getAuthor() {
     return author;

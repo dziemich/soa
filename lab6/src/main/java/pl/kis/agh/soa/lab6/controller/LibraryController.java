@@ -1,7 +1,8 @@
 package pl.kis.agh.soa.lab6.controller;
 
-import java.time.LocalDate;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import pl.kis.agh.soa.lab6.controller.dao.AuthorDao;
@@ -25,6 +26,7 @@ public class LibraryController {
     userDao = new UserDao(entityManager);
     bookDao = new BookDao(entityManager);
     loanDao = new LoanDao(entityManager);
+    authorDao = new AuthorDao(entityManager);
   }
 
   public List<User> fetchAllUsers(){
@@ -50,5 +52,36 @@ public class LibraryController {
   public void borrowBook(Long pickedUserId, Long chosenBookId) {
     bookDao.setTaken(chosenBookId);
     loanDao.createOne(pickedUserId, chosenBookId);
+  }
+
+  public void addAuthor(Author author) {
+    authorDao.createOne(author);
+  }
+
+  public void addBook(Book book, Long authorId) {
+    // TODO: add exception handling on no author found
+    try{
+      Author author = authorDao.findOneById(authorId);
+      book.setAuthor(author);
+      bookDao.createOne(book);
+    }catch (Exception e ){
+      System.out.println("nie ma autora");
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+          FacesMessage.SEVERITY_ERROR,
+          "Author is missing", null));
+    }
+
+  }
+
+  public List<Loan> fetchAllLoansOfAUser(Long pickedUserId) {
+    return loanDao.fetchAllById(pickedUserId);
+  }
+
+  public void deleteBook(Long chosenBookId) {
+    bookDao.delete(chosenBookId);
+  }
+
+  public void updateBook(Book book, Long updatedId) {
+    bookDao.updateOne(book, updatedId);
   }
 }

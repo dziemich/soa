@@ -28,6 +28,7 @@
       <version>8.0</version>
       <scope>provided</scope>
     </dependency>
+
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>java.jdbc</artifactId>
@@ -44,6 +45,19 @@
       <groupId>javax.enterprise</groupId>
       <artifactId>cdi-api</artifactId>
       <version>2.0.SP1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.faces</groupId>
+      <artifactId>javax.faces-api</artifactId>
+      <version>2.2</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+      <version>6.1</version>
     </dependency>
   </dependencies>
 

@@ -12,4 +12,5 @@ public class AbstractDao {
   public EntityManager getEntityManager() {
     return entityManager;
   }
+
 }

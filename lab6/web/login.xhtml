@@ -3,13 +3,13 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
 >
-<head>
+<h:head>
     <title>Title</title>
-</head>
-<body>
+</h:head>
+<h:body>
 <f:view>
     <h:outputLabel value="Welcome user: #{viewManager.findOneUser().getFullName()}"/>
 </f:view>
@@ -39,9 +39,115 @@
             <h:outputText value="#{author.isbn }"/>
         </h:column>
     </h:dataTable>
-    <h:inputText value="#{viewManager.chosenBookId}" required="true" requiredMessage="Required"/>
+    <h:inputText value="#{viewManager.chosenBookId}" />
     <h:commandButton value="Pick" type="submit" action="#{viewManager.borrowBook()}"/>
-    <h:commandButton value="Create" type="submit" action="create"/>
+
+    <h1> Authors </h1>
+    <h:dataTable id="authorTable" value="#{viewManager.findAllAuthors()}" var="author">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            <h:outputText value="#{author.id }"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">First Name</f:facet>
+            <h:outputText value="#{author.firstName }"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Last Name</f:facet>
+            <h:outputText value="#{author.lastName }"/>
+        </h:column>
+    </h:dataTable>
+    <h3>Add an author:</h3>
+    First Name:
+    <h:inputText id="name" value="#{createManager.author.firstName}"
+    />
+    Last Name:
+    <h:inputText id="surname" value="#{createManager.author.lastName}"
+    />
+
+    <h:commandButton value="Doda`j" type="submit" action="#{createManager.addAuthor()}"/>
+
+
+    <h1> Books </h1>
+    <h:dataTable id="bookTable" value="#{viewManager.findAllBooks()}" var="book">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            <h:outputText value="#{book.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Authors Full Name</f:facet>
+            <h:outputText value="#{book.author.getFullName() }"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            <h:outputText value="#{book.title }"/>
+        </h:column>
+    </h:dataTable>
+    <h3>Add a book:</h3>
+    Authors Id:
+    <h:inputText id="authorFirstName" value="#{createManager.authorId}"
+    />
+    Title:
+    <h:inputText id="title" value="#{createManager.book.title}"
+    />
+    ISBN:
+    <h:inputText id="isbn" value="#{createManager.book.isbn}"
+    />
+    Year:
+    <h:inputText id="year" value="#{createManager.book.year}"
+    />
+    Which Id:
+    <h:inputText id="updatedId" value="#{createManager.updatedId}"
+    />
+
+    <h:commandButton value="Create" type="submit" action="#{createManager.addBook()}"/>
+    <h:commandButton value="Update" type="submit" action="#{createManager.updateBook()}"/>
+    <br/>
+    <h3>Delete a book:</h3>
+    <h:inputText value="#{createManager.chosenBookId}" />
+    <h:commandButton value="Pick" type="submit" action="#{createManager.deleteBook()}"/>
+
+    <h1>
+        Your current loans
+    </h1>
+
+    <br></br>
+    <h3> History of Rents: </h3>
+        <p:dataTable id="rentBeanTable" value="#{viewManager.findAllLoans()}" var="rentItem" widgetVar="carsTable"
+                     styleClass="table table-striped table-bordered tableUpdated">
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Search all fields:"/>
+                    <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px"
+                                 placeholder="Enter keyword"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{rentItem.idRent }">
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{rentItem.idRent }"/>
+            </p:column>Pan
+            <p:column filterBy="#{rentItem.book.title }">
+                <f:facet name="header">Book</f:facet>
+                <h:outputText value="#{rentItem.book.title } "/>
+            </p:column>
+            <p:column filterBy="#{rentItem.loanDate }">
+                <f:facet name="header">Start</f:facet>
+                <h:outputText value="#{rentItem.loanDate }"/>
+            </p:column>
+            <p:column filterBy="#{rentItem.returnDate }">
+                <f:facet name="header">End</f:facet>
+                <h:outputText value="#{rentItem.returnDate }"/>
+            </p:column>
+        </p:dataTable>
+    <h:dataTable id="loanTable" value="#{viewManager.findAllLoans()}" var="loan">
+        <h:column>
+            <f:facet name="header">Authors Full Name</f:facet>
+            <h:outputText value="#{loan.book.title }"/>
+        </h:column>
+    </h:dataTable>
+    <h:messages/>
 </h:form>
-</body>
+
+</h:body>
 </html>
