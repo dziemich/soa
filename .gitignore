@@ -15,3 +15,6 @@ local-repo/
 
 tmp/
 **/target/
+**/swagger-ui.js
+**/swagger-ui.min.js
+**/swagger/lib/
