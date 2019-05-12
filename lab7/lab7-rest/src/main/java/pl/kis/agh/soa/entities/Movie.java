@@ -16,11 +16,15 @@ import pl.kis.agh.soa.entities.models.Model;
 @NamedQueries({
     @NamedQuery(
         name = "Movie.findAll",
-        query = "SELECT book FROM Movie book"
+        query = "SELECT movie FROM Movie movie"
     ),
     @NamedQuery(
         name = "Movie.findOne",
-        query = "SELECT book FROM Movie book WHERE id = :id"
+        query = "SELECT movie FROM Movie movie WHERE id = :id"
+    ),
+    @NamedQuery(
+        name = "Movie.findTitle",
+        query = "SELECT movie FROM Movie movie WHERE title = :title"
     ),
     @NamedQuery(
         name = "Movie.update",

@@ -22,6 +22,12 @@ public class MovieDao extends AbstractDao {
         .setParameter("id", id)
         .getSingleResult();
   }
+  public Movie findOne(String title) {
+    return this.getEntityManager()
+        .createNamedQuery("Movie.findTitle", Movie.class)
+        .setParameter("title", title)
+        .getSingleResult();
+  }
 
   public void createOne(Movie b) {
     Movie added = new Movie(b);

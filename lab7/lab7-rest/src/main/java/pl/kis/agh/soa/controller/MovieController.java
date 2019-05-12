@@ -28,4 +28,7 @@ public class MovieController {
     movieDao.updateOne(movie, updatedId);
   }
 
+  public Movie fetchMovie(String title) {
+    return movieDao.findOne(title);
+  }
 }
